@@ -207,7 +207,7 @@
             }
             
             // If position is empty, place a stone
-            if (gameState.board[pointNumber] === null) {
+            if (gameState.board[pointNumber] === null || (pointNumber === 6 && gameState.centerStones < 11)) {
                 // Check if the center spot already has 11 stones
                 if (pointNumber === 6 && gameState.centerStones >= 11) {
                     const status = document.getElementById('status');
