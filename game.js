@@ -46,6 +46,12 @@
                 
                 gameBoard.appendChild(point);
             }
+
+            // Add counter for center spot
+            const centerCounter = document.createElement('div');
+            centerCounter.id = 'center-counter';
+            centerCounter.textContent = `Center Stones: ${gameState.centerStones}`;
+            gameBoard.appendChild(centerCounter);
         }
 
         // Handle rolling the dice
@@ -217,6 +223,7 @@
                 // Increment centerStones if the stone is placed in the center spot
                 if (pointNumber === 6) {
                     gameState.centerStones++;
+                    document.getElementById('center-counter').textContent = `Center Stones: ${gameState.centerStones}`;
                 }
                 
                 // Check win condition
@@ -250,6 +257,9 @@
                     point.appendChild(stone);
                 }
             }
+
+            // Update center counter
+            document.getElementById('center-counter').textContent = `Center Stones: ${gameState.centerStones}`;
         }
 
         // Switch to the next player
