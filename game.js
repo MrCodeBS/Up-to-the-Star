@@ -12,7 +12,8 @@
                 5: null, // left top point
                 6: null  // center
             },
-            gameOver: false
+            gameOver: false,
+            centerStones: 0 // Track the number of stones in the center spot
         };
 
         // Point positions (in percentages relative to the board)
@@ -83,6 +84,12 @@
             
             const status = document.getElementById('status');
             
+            if (roll === 6 && gameState.centerStones >= 11) {
+                status.textContent = `Player ${gameState.currentPlayer} rolled a 6, but the center spot already has 11 stones.`;
+                document.getElementById('roll-btn').disabled = false;
+                return;
+            }
+
             if (position === null) {
                 // Position is empty, player can place a stone
                 status.textContent = `Player ${gameState.currentPlayer} rolled a ${roll}. Click on position ${roll} to place your stone.`;
@@ -189,6 +196,13 @@
             
             // If position is empty, place a stone
             if (gameState.board[pointNumber] === null) {
+                // Check if the center spot already has 11 stones
+                if (pointNumber === 6 && gameState.centerStones >= 11) {
+                    const status = document.getElementById('status');
+                    status.textContent = `Player ${gameState.currentPlayer} cannot place a stone in the center spot (position 6) as it already has 11 stones.`;
+                    return;
+                }
+
                 gameState.board[pointNumber] = gameState.currentPlayer;
                 
                 // Decrease stone count for current player
@@ -198,6 +212,11 @@
                 } else {
                     gameState.player2Stones--;
                     document.getElementById('player2-stones').textContent = gameState.player2Stones;
+                }
+
+                // Increment centerStones if the stone is placed in the center spot
+                if (pointNumber === 6) {
+                    gameState.centerStones++;
                 }
                 
                 // Check win condition
@@ -269,6 +288,7 @@
             gameState.player2Stones = 6;
             gameState.currentRoll = null;
             gameState.gameOver = false;
+            gameState.centerStones = 0; // Reset the centerStones property
             
             // Clear the board
             for (let i = 1; i <= 6; i++) {
