@@ -18,12 +18,12 @@
 
         // Point positions (in percentages relative to the board)
         const pointPositions = {
-            1: { top: '0%', left: '50%' },      // Top point
-            2: { top: '38%', left: '93%' },     // Right top
-            3: { top: '82%', left: '75%' },     // Right bottom
-            4: { top: '82%', left: '25%' },     // Left bottom
-            5: { top: '38%', left: '7%' },      // Left top
-            6: { top: '40%', left: '50%' }      // Center
+            1: { top: '0%', left: '42.5%' },      // Top point
+            2: { top: '28%', left: '90%' },     // Right top
+            3: { top: '82%', left: '70%' },     // Right bottom
+            4: { top: '82%', left: '15%' },     // Left bottom
+            5: { top: '28%', left: '-5%' },      // Left top
+            6: { top: '42%', left: '42.5%' }      // Center
         };
 
         // Initialize game board
