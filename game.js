@@ -96,6 +96,12 @@
                 return;
             }
 
+            if (roll === 6 && gameState.centerStones < 11) {
+                status.textContent = `Player ${gameState.currentPlayer} rolled a 6. Click on position 6 to place your stone.`;
+                highlightPoint(6);
+                return;
+            }
+
             if (position === null) {
                 // Position is empty, player can place a stone
                 status.textContent = `Player ${gameState.currentPlayer} rolled a ${roll}. Click on position ${roll} to place your stone.`;
